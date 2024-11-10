@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>BookScribe</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="logo-container">
+            <img src="" alt="" />
+            <h1><a href="/">BookScribe</a></h1>
+          </div>
+          <ul class="nav-list">
+            <li class="list-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="list-item">
+              <a class="nav-link" href="#About">About</a>
+            </li>
+            <li><a class="nav-link" href="/dashboard">Dashboard</a></li>
+            <li class="list-item">
+              <a class="nav-link" href="#">Contribute</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro Section -->
+    <section class="intro column">
+      <div class="img-container">
+        <img
+          class="background-img"
+          src="/assets/images/background.jpg"
+          alt="background image"
+        />
+      </div>
+      <div class="container">
+        <div class="column">
+          <div class="intro-content">
+            <h1><span>Discover Books</span>, Make Them Yours.</h1>
+            <p>
+              Find your next great read from a world of books and keep track of
+              your thoughts with <span>personalized notes</span>.
+            </p>
+          </div>
+          <form class="find" action="/dashboard/books/find" method="post">
+            <input
+              type="text"
+              name="title"
+              id="title-input"
+              placeholder="Search for books, authors, or genres..."
+            />
+            <button class="btn" type="submit">
+              <img src="assets/images/search.png" alt="" />
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="About" class="about">
+      <div class="container">
+        <div class="column">
+          <h2>How BookScribe Works</h2>
+          <div class="about-grid">
+            <div class="about-item">
+              <div>
+                <img src="assets/images/searchBook.png" alt="search icon" />
+                <h3>Search for Books</h3>
+              </div>
+              <p>
+                Discover books effortlessly by title, author, or genre. Our
+                powerful search pulls from a vast collection to help you find
+                your next great read.
+              </p>
+            </div>
+            <div class="about-item">
+              <div>
+                <img src="assets/images/books.png" alt="" />
+                <h3>Build Your Library</h3>
+              </div>
+              <p>
+                Create a customized library of books you love, are currently
+                reading, or plan to read. Keep all your favorites in one place.
+              </p>
+            </div>
+            <div class="about-item">
+              <div>
+                <img src="assets/images/writing.png" alt="" />
+                <h3>Write and Organize Notes</h3>
+              </div>
+              <p>
+                Capture your thoughts, favorite quotes, and reflections as you
+                read. Organize your notes by book and easily access them
+                whenever you need.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <h1>BookScribe</h1>
+          <p>© 2024 Marwan Taha. All rights reserved</p>
+          <div class="contacts">
+            <div>
+              <a href="mailto:marwantahaa@gmail.com">
+                <img
+                  class="mini-icon"
+                  src="./assets/images/logos/email.png"
+                  alt="email"
+                />
+              </a>
+            </div>
+            <div>
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/in/marwanabdelsamad/"
+              >
+                <img
+                  class="mini-icon"
+                  src="./assets/images/logos/linkedin.png"
+                  alt="linkedin"
+                />
+              </a>
+            </div>
+            <div>
+              <a target="_blank" href="https://github.com/Marwan-Taha">
+                <img
+                  class="mini-icon"
+                  src="./assets/images/logos/github.png"
+                  alt="github"
+                />
+              </a>
+            </div>
+            <div>
+              <a target="_blank" href="https://www.instagram.com/marwan.tahaa/">
+                <img
+                  class="mini-icon"
+                  src="./assets/images/logos/instagram.png"
+                  alt="instagram"
+                />
+              </a>
+            </div>
+            <div>
+              <a target="_blank" href="https://t.me/itsmervie">
+                <img
+                  class="mini-icon"
+                  src="./assets/images/logos/telegram.png"
+                  alt="telegram"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

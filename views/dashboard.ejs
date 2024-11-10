@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>BookScribe</title>
+  </head>
+  <body>
+    <section class="app-section">
+      <div class="container row">
+        <div class="column">
+          <h1><a href="/">BookScribe</a></h1>
+          <ul class="nav-list">
+            <li class="list-item">
+              <img
+                class="icon-img"
+                src="/assets/images/home.png"
+                alt="home icon"
+              /><a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="list-item">
+              <img
+                class="icon-img"
+                src="/assets/images/study.png"
+                alt="reading icon"
+              />
+              <a class="nav-link" href="/dashboard/books">Books</a>
+            </li>
+            <li class="list-item">
+              <img class="icon-img" src="/assets/images/library.png" alt="" /><a
+                class="nav-link"
+                href="/dashboard/library"
+                >Library</a
+              >
+            </li>
+          </ul>
+        </div>
+        <%if (locals.display === "home") {%>
+        <div class="app-home-container">
+          <p>Find your books and Organize your thoughts</p>
+
+          <form class="find" action="/dashboard/books/find" method="post">
+            <input
+              type="text"
+              name="title"
+              id="title-input"
+              placeholder="Search for books..."
+            />
+          </form>
+        </div>
+        <%} else if (locals.display === "books") {%>
+
+        <div class="dashboard-books">
+          <div class="row">
+            <h2>Discover books</h2>
+            <form class="find" action="/dashboard/books/find" method="post">
+              <input
+                type="text"
+                name="title"
+                id="title-input"
+                placeholder="Search for books..."
+              />
+            </form>
+          </div>
+          <div class="grid-container">
+            <%books.forEach((book) => {%>
+            <div class="grid-item">
+              <a class="grid-link" href="/view/<%=book.id%>">
+                <% if (book.volumeInfo.hasOwnProperty('imageLinks')) { %>
+                <img
+                  class="bookImg"
+                  src="<%=book.volumeInfo.imageLinks.thumbnail%>"
+                  alt="book image"
+                />
+                <%} else {%>
+                <img
+                  class="bookImg"
+                  src="/assets/images/no_cover_thumb.gif"
+                  alt="no cover thumbnail"
+                />
+                <%}%>
+                <h3><%=book.volumeInfo.title%></h3>
+                <%if (book.volumeInfo.hasOwnProperty('authors')) {%>
+                <p><%=book.volumeInfo.authors[0]%></p>
+                <%} else { %>
+                <p></p>
+                <%}%>
+              </a>
+            </div>
+            <%})%>
+          </div>
+        </div>
+        <% } else if (locals.display === "library") {%>
+        <div class="dashboard-books">
+          <div class="row">
+            <h2>Your Books</h2>
+            <form class="find" action="/dashboard/books/find" method="post">
+              <input
+                type="text"
+                name="title"
+                id="title-input"
+                placeholder="Search for books..."
+              />
+            </form>
+          </div>
+          <div class="grid-container">
+            <%books.forEach((book) => {%>
+            <div class="grid-item">
+              <a class="grid-link" href="/view/<%=book.id%>">
+                <% if (book.volumeInfo.hasOwnProperty('imageLinks')) { %>
+                <img
+                  class="bookImg"
+                  src="<%=book.volumeInfo.imageLinks.thumbnail%>"
+                  alt="book image"
+                />
+                <%} else {%>
+                <img
+                  class="bookImg"
+                  src="/assets/images/no_cover_thumb.gif"
+                  alt="no cover thumbnail"
+                />
+                <%}%>
+                <h3><%=book.volumeInfo.title%></h3>
+                <%if (book.volumeInfo.hasOwnProperty('authors')) {%>
+                <p><%=book.volumeInfo.authors[0]%></p>
+                <%} else { %>
+                <p></p>
+                <%}%>
+              </a>
+            </div>
+            <%})%>
+          </div>
+        </div>
+        <%}%>
+      </div>
+    </section>
+  </body>
+</html>

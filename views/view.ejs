@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/view.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>BookScribe</title>
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <div class="row">
+          <div class="logo-container">
+            <img src="" alt="" />
+            <h1><a href="/">BookScribe</a></h1>
+          </div>
+          <ul class="nav-list">
+            <li class="list-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="list-item"><a class="nav-link" href="#">About</a></li>
+            <li><a class="nav-link" href="/dashboard">Dashboard</a></li>
+            <li class="list-item">
+              <a class="nav-link" href="#">Contribute</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <section class="view-section">
+      <div class="container">
+        <div class="book-info-container">
+          <div class="row">
+            <div>
+              <% if (book.volumeInfo.hasOwnProperty('imageLinks')) { %>
+              <img
+                class="view-img"
+                src="<%=book.volumeInfo.imageLinks.thumbnail%>"
+                alt="book image"
+              />
+              <%} else {%>
+              <img
+                class="view-img"
+                src="/assets/images/no_cover_thumb.gif"
+                alt="no cover thumbnail"
+              />
+              <%}%>
+            </div>
+            <div class="book-info-details">
+              <div>
+                <h1><%=book.volumeInfo.title%></h1>
+                <%if (book.volumeInfo.hasOwnProperty('authors')) {%>
+                <h2 class="author-name"><%=book.volumeInfo.authors[0]%></h2>
+                <%}%>
+              </div>
+
+              <div class="book-info--status">
+                <%if(book.volumeInfo.hasOwnProperty('pageCount')) {%>
+                <p>
+                  <img
+                    class="mini-icon"
+                    src="/assets/images/file.png"
+                    alt="pages icon"
+                  />
+                  <span><%=book.volumeInfo.pageCount%> pages</span>
+                </p>
+                <%}%> <%if(book.volumeInfo.hasOwnProperty('categories')) {%>
+
+                <p>
+                  <img
+                    class="mini-icon"
+                    src="/assets/images/folder.png"
+                    alt="categories icon"
+                  />
+                  <span><%=book.volumeInfo.categories[0]%></span>
+                </p>
+                <%}%>
+                <p>
+                  <img
+                    class="mini-icon"
+                    src="/assets/images/calendar.png"
+                    alt="calender icon"
+                  />
+                  <span>Published on <%=book.volumeInfo.publishedDate%></span>
+                </p>
+              </div>
+              <%if (locals.bookExists) {%>
+              <!-- <button id="addNote" class="btn">Add Notes</button> -->
+              <%} else {%>
+              <form method="post" action="/add/<%=book.id%>">
+                <input
+                  type="hidden"
+                  name="bookTitle"
+                  value="<%=book.volumeInfo.title%>"
+                />
+                <button type="submit" class="btn">Add to library</button>
+              </form>
+              <%}%>
+            </div>
+          </div>
+          <div class="description">
+            <h2>Description</h2>
+            <p><%=book.volumeInfo.description%></p>
+          </div>
+        </div>
+        <%if (locals.bookExists) {%>
+        <div class="note-container">
+          <h3>Your Notes</h3>
+          <div class="notes-inner-container">
+            <%notes.forEach((note)=> {%>
+            <div class="note">
+              <p><%=note.content%></p>
+            </div>
+            <%})%>
+          </div>
+          <form action="/addNote/<%=book.id%>" method="post">
+            <input
+              type="hidden"
+              name="bookTitle"
+              value="<%=book.volumeInfo.title%>"
+            />
+            <textarea
+              id="textareaId"
+              name="note"
+              placeholder="Enter Your Note"
+            ></textarea>
+            <button type="submit">
+              <img
+                class="icon-img"
+                src="/assets/images/submit.png"
+                alt="submit icon"
+              />
+            </button>
+          </form>
+        </div>
+        <%}%>
+      </div>
+    </section>
+
+    <script>
+      document
+        .getElementById("textareaId")
+        .addEventListener("keypress", (e) => {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+
+            e.currentTarget.closest("form").submit();
+          }
+        });
+    </script>
+  </body>
+</html>
