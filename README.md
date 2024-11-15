@@ -97,19 +97,6 @@ The app will be running at [http://localhost:3000](http://localhost:3000).
 3. View details for each book and add notes.
 4. Access your dashboard to view and manage your library and notes.
 
-## Deployment
-
-To deploy BookScribe to Vercel:
-
-1. Run the following command:
-   ```bash
-   vercel
-   ```
-2. Set environment variables in Vercel (Settings > Environment Variables).
-3. Deploy your app with:
-   ```bash
-   vercel --prod
-   ```
 
 ## Future Improvements
 
